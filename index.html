@@ -15,7 +15,7 @@ body{
     background:#edd8ed;
     font-family:"Delius",cursive;
     margin:0;
-    padding:60px;
+    padding:60px 20px;
     color:#6d6d6d;
 }
 
@@ -57,9 +57,76 @@ p{
     transform:translateY(-3px);
 }
 
+/* Widescreen Unblocked Video Container Styles */
+.player-container {
+    width: 100%;
+    margin: 40px auto 10px auto;
+    background: #1a1a1a;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ebd9eb;
+    text-align: left;
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* Fixed 16:9 Aspect Ratio */
+    height: 0;
+    background: #000;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.video-details {
+    padding: 24px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.video-details h2 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+    color: #f1f1f1;
+    font-weight: 600;
+}
+
+.video-details p {
+    font-size: 0.9rem;
+    color: #aaaaaa;
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+.tag {
+    display: inline-block;
+    background: #e50914;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
 .footer{
     margin-top:45px;
     font-size:20px;
+}
+
+/* Fixes display constraints for narrower mobile windows */
+@media (max-width: 600px) {
+    h1 { font-size: 40px; }
+    p { font-size: 22px; }
+    .button { font-size: 18px; padding: 12px 24px; }
 }
 
 </style>
@@ -78,106 +145,26 @@ p{
 
 <a class="button" href="documents.html">♡ revision ♡</a>
 
+<!-- Integrated Secure Streaming Framework -->
+<div class="player-container">
+    <div class="video-wrapper">
+        <iframe 
+            src="https://archive.org" 
+            allowfullscreen>
+        </iframe>
+    </div>
+    <div class="video-details">
+        <span class="tag">Archive Streaming Data Layer</span>
+        <h2>Max and Ruby | Top 3 HD Episode Compilation !</h2>
+        <p>Enjoy the classic episodes of Max and Ruby seamlessly streamed through your custom site portal bypass layout.</p>
+    </div>
+</div>
+
 <div class="footer">
 made by sugxrbunnyx ♡
 </div>
 
 </div>
-
-</body>
-</html> 
- html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Max and Ruby Streaming Portal</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            background-color: #0d0d0d;
-            color: #ffffff;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .player-container {
-            width: 100%;
-            max-width: 900px;
-            background: #1a1a1a;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-            border: 1px solid #2d2d2d;
-        }
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%; /* Perfect 16:9 Aspect Ratio */
-            height: 0;
-            background: #000;
-        }
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-        .video-details {
-            padding: 24px;
-        }
-        h1 {
-            font-size: 1.5rem;
-            margin-bottom: 8px;
-            color: #f1f1f1;
-            font-weight: 600;
-        }
-        p {
-            font-size: 0.95rem;
-            color: #aaaaaa;
-            line-height: 1.5;
-        }
-        .tag {
-            display: inline-block;
-            background: #e50914;
-            color: white;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="player-container">
-        <!-- Embedded Unblocked Video Player Frame -->
-        <div class="video-wrapper">
-            <iframe 
-                src="https://dailymotion.com" 
-                allow="autoplay; fullscreen; picture-in-picture" 
-                allowfullscreen>
-            </iframe>
-        </div>
-        
-        <!-- Video Information Metadata Block -->
-        <div class="video-details">
-            <span class="tag">Treehouse Direct Compilation</span>
-            <h1>Max and Ruby | Top 3 HD Episode Compilation !</h1>
-            <p>Enjoy the classic episodes of Max and Ruby seamlessly streamed through a secure, encrypted cloud data layer designed to look great on any display size.</p>
-        </div>
-    </div>
 
 </body>
 </html>
