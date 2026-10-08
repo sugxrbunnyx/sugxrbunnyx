@@ -57,23 +57,23 @@ p{
     transform:translateY(-3px);
 }
 
-/* Widescreen Unblocked Video Container Styles */
+/* Enlarged Max-Size Unblocked Video Container Styles */
 .player-container {
     width: 100%;
     margin: 40px auto 10px auto;
-    background: #1a1a1a;
-    border-radius: 20px;
+    background: #000000;
+    border-radius: 24px;
     overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    border: 1px solid #ebd9eb;
-    text-align: left;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    border: 2px solid #ebd9eb;
 }
 
 .video-wrapper {
     position: relative;
-    padding-bottom: 56.25%; /* Fixed 16:9 Aspect Ratio */
+    padding-bottom: 56.25%; /* Perfect 16:9 Aspect Ratio */
     height: 0;
     background: #000;
+    width: 100%;
 }
 
 .video-wrapper iframe {
@@ -83,38 +83,6 @@ p{
     width: 100%;
     height: 100%;
     border: 0;
-}
-
-.video-details {
-    padding: 24px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-}
-
-.video-details h2 {
-    font-size: 1.3rem;
-    margin-bottom: 8px;
-    color: #f1f1f1;
-    font-weight: 600;
-}
-
-.video-details p {
-    font-size: 0.9rem;
-    color: #aaaaaa;
-    margin-bottom: 0;
-    line-height: 1.5;
-}
-
-.tag {
-    display: inline-block;
-    background: #e50914;
-    color: white;
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    font-weight: bold;
-    margin-bottom: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
 }
 
 .footer{
@@ -127,6 +95,7 @@ p{
     h1 { font-size: 40px; }
     p { font-size: 22px; }
     .button { font-size: 18px; padding: 12px 24px; }
+    body { padding: 30px 10px; }
 }
 
 </style>
@@ -145,7 +114,7 @@ p{
 
 <a class="button" href="documents.html">♡ revision ♡</a>
 
-<!-- Integrated Secure Streaming Framework -->
+<!-- Integrated Clean Streaming Player (Max Size, No Banner) -->
 <div class="player-container">
     <div class="video-wrapper">
         <iframe 
@@ -154,11 +123,6 @@ p{
             webkitallowfullscreen="true" 
             mozallowfullscreen="true">
         </iframe>
-    </div>
-    <div class="video-details">
-        <span class="tag">Archive Streaming Data Layer</span>
-        <h2>Max and Ruby | Top 3 HD Episode Compilation !</h2>
-        <p>Enjoy the classic episodes of Max and Ruby seamlessly streamed through your custom site portal bypass layout.</p>
     </div>
 </div>
 
@@ -170,3 +134,4 @@ made by sugxrbunnyx ♡
 
 </body>
 </html>
+
