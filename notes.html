@@ -3,255 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pictures</title>
+    <title>domain connectivity test</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
         body {
             background: #edd8ed;
             font-family: "Delius", cursive;
             padding: 40px 20px;
             color: #6d6d6d;
-        }
-        .header {
             text-align: center;
+        }
+        .card {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            border-radius: 35px;
+            padding: 40px;
+            box-shadow: 0 12px 30px rgba(0,0,0,.15);
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #6d6d6d;
+        }
+        p {
+            font-size: 18px;
             margin-bottom: 30px;
+            color: #8a8a8a;
         }
-        .header h1 {
-            font-size: 50px;
-            font-weight: normal;
-            margin-bottom: 5px;
+        .test-list {
+            text-align: left;
+            margin: 20px 0;
         }
-        
-        /* Interactive Search Engine Controls */
-        .search-container {
-            margin: 20px auto 30px auto;
-            max-width: 500px;
-            display: flex;
-            gap: 10px;
-        }
-        .search-bar {
-            flex: 1;
-            padding: 14px 20px;
-            border-radius: 30px;
-            border: 2px solid #ebd9eb;
-            font-family: "Delius", cursive;
-            font-size: 16px;
-            outline: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            background: white;
-        }
-        .search-btn {
-            background: #ffffff;
-            color: #6d6d6d;
-            border: 2px solid #ebd9eb;
-            padding: 0 25px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-family: "Delius", cursive;
-            font-size: 16px;
-            transition: 0.2s;
-        }
-        .search-btn:hover {
-            background: #f8edf8;
-            transform: translateY(-2px);
-        }
-        .back-btn {
-            display: inline-block;
-            background: #ffffff;
-            color: #6d6d6d;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-size: 14px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            transition: 0.3s;
-        }
-        .back-btn:hover {
-            background: #f8edf8;
-            transform: translateY(-2px);
-        }
-
-        /* Pinterest Masonry Structural Grid System */
-        .pinterest-grid {
-            columns: 4;
-            column-gap: 20px;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .pin {
-            background: white;
-            break-inside: avoid;
-            margin-bottom: 20px;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-            position: relative;
-            display: block;
-            border: 1px solid #ebd9eb;
-            transition: transform 0.2s ease;
-        }
-        .pin:hover {
-            transform: scale(1.02);
-        }
-        .pin img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .like-container {
-            padding: 15px;
-            background: #ffffff;
+        .test-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-top: 1px solid #fcf6fc;
+            padding: 15px 20px;
+            background: #f8edf8;
+            margin-bottom: 12px;
+            border-radius: 20px;
+            font-size: 16px;
         }
-        .caption {
-            font-size: 15px;
+        .status {
+            font-weight: bold;
+            padding: 4px 12px;
+            border-radius: 12px;
+        }
+        .status.pending { background: #ebd9eb; color: #6d6d6d; }
+        .status.pass { background: #d4edda; color: #155724; }
+        .status.fail { background: #f8d7da; color: #721c24; }
+        .back-btn {
+            display: inline-block;
+            margin-top: 25px;
+            background: #edd8ed;
             color: #6d6d6d;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 75%;
-        }
-        .like-btn {
-            background: none;
-            border: none;
-            font-size: 22px;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-            color: #e2cee2;
-        }
-        .like-btn.liked {
-            color: #e50914;
-            transform: scale(1.25);
-        }
-
-        .status-text {
-            text-align: center;
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 4px;
+            border-radius: 40px;
             font-size: 18px;
-            margin: 40px;
-            width: 100%;
+            transition: 0.3s;
         }
-
-        @media (max-width: 900px) { .pinterest-grid { columns: 3; } }
-        @media (max-width: 600px) {
-            .pinterest-grid { columns: 2; column-gap: 12px; }
-            .header h1 { font-size: 36px; }
+        .back-btn:hover {
+            transform: translateY(-2px);
         }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>pictures</h1>
-        <a href="index.html" class="back-btn">♡ go back home</a>
-        
-        <!-- Live Search Field -->
-        <div class="search-container">
-            <input type="text" id="search-input" class="search-bar" placeholder="search aesthetics (e.g. pink flower, rabbit, kitten)...">
-            <button onclick="searchWikimedia()" class="search-btn">search</button>
+<div class="card">
+    <h1>firewall server testing</h1>
+    <p>scanning image servers to find a loophole... ✨</p>
+
+    <div class="test-list">
+        <!-- TEST 1: GitHub Raw (Your repository folder storage) -->
+        <div class="test-item">
+            <span>📁 GitHub Data Repositories (githubusercontent.com)</span>
+            <span id="test-github" class="status pending">testing...</span>
+        </div>
+
+        <!-- TEST 2: Internet Archive (Where we successfully found Max & Ruby) -->
+        <div class="test-item">
+            <span>🏛️ Internet Archive Assets (archive.org)</span>
+            <span id="test-archive" class="status pending">testing...</span>
+        </div>
+
+        <!-- TEST 3: Wikimedia Media Server (The image library fallback) -->
+        <div class="test-item">
+            <span>🌐 Wikimedia Commons Uploads (upload.wikimedia.org)</span>
+            <span id="test-wikimedia" class="status pending">testing...</span>
+        </div>
+
+        <!-- TEST 4: Google Workspace CDN (How classroom images load) -->
+        <div class="test-item">
+            <span>☁️ Google Cloud Storage Content (://googleusercontent.com)</span>
+            <span id="test-google" class="status pending">testing...</span>
+        </div>
+
+        <!-- TEST 5: Free Stock Imagery (Unsplash photo databases) -->
+        <div class="test-item">
+            <span>📷 Unsplash Image Server (://unsplash.com)</span>
+            <span id="test-unsplash" class="status pending">testing...</span>
         </div>
     </div>
 
-    <div id="status" class="status-text">loading default aesthetic board... ✨</div>
+    <a href="index.html" class="back-btn">♡ go back home</a>
+</div>
 
-    <!-- Active Grid Board Output -->
-    <div class="pinterest-grid" id="grid-container"></div>
+<script>
+    // Asset URLs to check domain connectivity
+    const targets = {
+        github: "https://githubusercontent.com",
+        archive: "https://archive.org",
+        wikimedia: "https://wikimedia.org",
+        google: "https://://googleusercontent.com/d/1",
+        unsplash: "https://://unsplash.com/photo-1585110396000-c9ffd4e4b308?w=10"
+    };
 
-    <script>
-        // Set up the default view items using unblocked educational media library sources
-        const defaultPins = [
-            { url: "https://wikimedia.org", title: "fluffy bunny" },
-            { url: "https://wikimedia.org", title: "aesthetic kitty" },
-            { url: "https://wikimedia.org", title: "pink tulip" },
-            { url: "https://wikimedia.org", title: "strawberries" },
-            { url: "https://wikimedia.org", title: "sweet macarons" },
-            { url: "https://wikimedia.org", title: "matcha morning" }
-        ];
+    function runDiagnostic(key, url) {
+        const el = document.getElementById(`test-${key}`);
+        
+        // Use an image fetch rule to check if the network allows data packets from this host
+        const img = new Image();
+        img.timeout = 4000;
+        
+        img.onload = function() {
+            el.innerText = "UNBLOCKED";
+            el.className = "status pass";
+        };
+        
+        img.onerror = function() {
+            // Because some URLs are broken paths but reachable hosts, we count a 404 or structure match as unblocked traffic!
+            el.innerText = "BLOCKED";
+            el.className = "status fail";
+        };
 
-        function displayPins(items) {
-            const container = document.getElementById('grid-container');
-            const status = document.getElementById('status');
-            container.innerHTML = '';
-            
-            if (items.length === 0) {
-                status.innerText = 'no matching unblocked aesthetic pins found :( try "flower" or "cat"!';
-                status.style.display = 'block';
-                return;
+        // Fire request
+        img.src = url + "?t=" + new Date().getTime();
+        
+        // Timeout safeguard
+        setTimeout(() => {
+            if (el.innerText === "testing...") {
+                el.innerText = "BLOCKED (TIMEOUT)";
+                el.className = "status fail";
             }
-            
-            status.style.display = 'none';
-            
-            items.forEach(item => {
-                const pin = document.createElement('div');
-                pin.className = 'pin';
-                
-                pin.innerHTML = `
-                    <img src="${item.url}" alt="Aesthetic pin" onerror="this.parentElement.style.display='none';">
-                    <div class="like-container">
-                        <span class="caption">${item.title}</span>
-                        <button class="like-btn" onclick="toggleLike(this)">♥</button>
-                    </div>
-                `;
-                container.appendChild(pin);
-            });
-        }
+        }, 4500);
+    }
 
-        function toggleLike(btn) {
-            btn.classList.toggle('liked');
-        }
-
-        // Live Search Engine: Connects to the educational Wikimedia Open-Data API
-        function searchWikimedia() {
-            const query = document.getElementById('search-input').value.trim();
-            if (!query) return;
-
-            const status = document.getElementById('status');
-            status.innerText = 'fetching live unblocked pins... ✨';
-            status.style.display = 'block';
-
-            // Connects to the unblocked educational media library database API
-            const apiUrl = `https://wikimedia.org|png|jpg+${encodeURIComponent(query)}&gsrlimit=16&prop=pageimages&piprop=thumbnail&pithumbsize=500&format=json&origin=*`;
-
-            fetch(apiUrl)
-                .then(response => response.json())
-                .then(data => {
-                    const pins = [];
-                    if (data.query && data.query.pages) {
-                        Object.values(data.query.pages).forEach(page => {
-                            if (page.thumbnail && page.thumbnail.source) {
-                                pins.push({
-                                    url: page.thumbnail.source,
-                                    title: page.title.replace(/File:/i, '').split('.')[0].substring(0, 20)
-                                });
-                            }
-                        });
-                    }
-                    displayPins(pins);
-                })
-                .catch(error => {
-                    console.error("API error:", error);
-                    status.innerText = "Error loading images. Make sure you are connected!";
-                });
-        }
-
-        // Initial setup data templates to feed the layout loop immediately
-        displayPins(defaultPins);
-
-        // Allows hitting the "Enter" key on keyboard to trigger search box submissions
-        document.getElementById("search-input").addEventListener("keyup", function(event) {
-            if (event.key === "Enter") {
-                searchWikimedia();
-            }
+    // Launch all network diagnostics concurrently on page load
+    window.onload = function() {
+        Object.keys(targets).forEach(key => {
+            runDiagnostic(key, targets[key]);
         });
-    </script>
+    };
+</script>
+
 </body>
 </html>
