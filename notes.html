@@ -3,161 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>domain connectivity test</title>
+    <title>pictures</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
         body {
             background: #edd8ed;
             font-family: "Delius", cursive;
             padding: 40px 20px;
             color: #6d6d6d;
+        }
+        .header {
             text-align: center;
+            margin-bottom: 40px;
         }
-        .card {
-            max-width: 700px;
-            margin: auto;
-            background: white;
-            border-radius: 35px;
-            padding: 40px;
-            box-shadow: 0 12px 30px rgba(0,0,0,.15);
-        }
-        h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
+        .header h1 {
+            font-size: 50px;
+            font-weight: normal;
+            margin-bottom: 5px;
             color: #6d6d6d;
         }
-        p {
-            font-size: 18px;
-            margin-bottom: 30px;
+        .header p {
+            font-size: 20px;
             color: #8a8a8a;
         }
-        .test-list {
-            text-align: left;
-            margin: 20px 0;
-        }
-        .test-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            background: #f8edf8;
-            margin-bottom: 12px;
-            border-radius: 20px;
-            font-size: 16px;
-        }
-        .status {
-            font-weight: bold;
-            padding: 4px 12px;
-            border-radius: 12px;
-        }
-        .status.pending { background: #ebd9eb; color: #6d6d6d; }
-        .status.pass { background: #d4edda; color: #155724; }
-        .status.fail { background: #f8d7da; color: #721c24; }
         .back-btn {
             display: inline-block;
-            margin-top: 25px;
-            background: #edd8ed;
+            margin-top: 15px;
+            background: #ffffff;
             color: #6d6d6d;
             text-decoration: none;
-            padding: 12px 28px;
-            border-radius: 4px;
-            border-radius: 40px;
-            font-size: 18px;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 16px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             transition: 0.3s;
         }
         .back-btn:hover {
+            background: #f8edf8;
             transform: translateY(-2px);
+        }
+
+        /* --- PINTEREST MASONRY GRID SYSTEM --- */
+        .pinterest-grid {
+            columns: 3; /* Perfect look for school laptop screens */
+            column-gap: 20px;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pin {
+            background: white;
+            break-inside: avoid;
+            margin-bottom: 20px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            cursor: pointer;
+            display: block;
+            border: 1px solid #ebd9eb;
+        }
+        
+        .pin:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        }
+
+        .pin img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .like-container {
+            padding: 15px;
+            background: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .caption {
+            font-size: 16px;
+            color: #6d6d6d;
+        }
+        .like-btn {
+            background: none;
+            border: none;
+            font-size: 22px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            color: #e2cee2;
+        }
+        .like-btn.liked {
+            color: #e50914;
+            transform: scale(1.25);
+        }
+
+        @media (max-width: 600px) {
+            .pinterest-grid { columns: 2; column-gap: 12px; }
+            .header h1 { font-size: 36px; }
         }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <h1>firewall server testing</h1>
-    <p>scanning image servers to find a loophole... ✨</p>
-
-    <div class="test-list">
-        <!-- TEST 1: GitHub Raw (Your repository folder storage) -->
-        <div class="test-item">
-            <span>📁 GitHub Data Repositories (githubusercontent.com)</span>
-            <span id="test-github" class="status pending">testing...</span>
-        </div>
-
-        <!-- TEST 2: Internet Archive (Where we successfully found Max & Ruby) -->
-        <div class="test-item">
-            <span>🏛️ Internet Archive Assets (archive.org)</span>
-            <span id="test-archive" class="status pending">testing...</span>
-        </div>
-
-        <!-- TEST 3: Wikimedia Media Server (The image library fallback) -->
-        <div class="test-item">
-            <span>🌐 Wikimedia Commons Uploads (upload.wikimedia.org)</span>
-            <span id="test-wikimedia" class="status pending">testing...</span>
-        </div>
-
-        <!-- TEST 4: Google Workspace CDN (How classroom images load) -->
-        <div class="test-item">
-            <span>☁️ Google Cloud Storage Content (://googleusercontent.com)</span>
-            <span id="test-google" class="status pending">testing...</span>
-        </div>
-
-        <!-- TEST 5: Free Stock Imagery (Unsplash photo databases) -->
-        <div class="test-item">
-            <span>📷 Unsplash Image Server (://unsplash.com)</span>
-            <span id="test-unsplash" class="status pending">testing...</span>
-        </div>
+    <div class="header">
+        <h1>pictures</h1>
+        <p>my cute little collection ♡</p>
+        <a href="index.html" class="back-btn">♡ go back home</a>
     </div>
 
-    <a href="index.html" class="back-btn">♡ go back home</a>
-</div>
+    <!-- Active Pinterest Grid Using Fully Local Embedded Graphics -->
+    <div class="pinterest-grid">
 
-<script>
-    // Asset URLs to check domain connectivity
-    const targets = {
-        github: "https://githubusercontent.com",
-        archive: "https://archive.org",
-        wikimedia: "https://wikimedia.org",
-        google: "https://://googleusercontent.com/d/1",
-        unsplash: "https://://unsplash.com/photo-1585110396000-c9ffd4e4b308?w=10"
-    };
+        <!-- PIN 1: Pink Heart Ribbon Pattern Tiny Pin -->
+        <div class="pin">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='300' height='350' viewBox='0 0 300 350'><rect width='100%' height='100%' fill='%23fff0f5'/><path d='M150,90 C130,50 70,50 70,110 C70,170 150,240 150,240 C150,240 230,170 230,110 C230,50 170,50 150,90 Z' fill='%23ffb6c1'/><circle cx='80' cy='280' r='8' fill='%23ffb6c1'/><circle cx='120' cy='290' r='5' fill='%23ffb6c1'/><circle cx='180' cy='275' r='7' fill='%23ffb6c1'/><circle cx='220' cy='295' r='6' fill='%23ffb6c1'/></svg>" alt="Aesthetic pin">
+            <div class="like-container">
+                <span class="caption">pink ribbon dream ♡</span>
+                <button class="like-btn" onclick="toggleLike(this)">♥</button>
+            </div>
+        </div>
 
-    function runDiagnostic(key, url) {
-        const el = document.getElementById(`test-${key}`);
-        
-        // Use an image fetch rule to check if the network allows data packets from this host
-        const img = new Image();
-        img.timeout = 4000;
-        
-        img.onload = function() {
-            el.innerText = "UNBLOCKED";
-            el.className = "status pass";
-        };
-        
-        img.onerror = function() {
-            // Because some URLs are broken paths but reachable hosts, we count a 404 or structure match as unblocked traffic!
-            el.innerText = "BLOCKED";
-            el.className = "status fail";
-        };
+        <!-- PIN 2: Pastel Sparkle Night Sky Tall Pin -->
+        <div class="pin">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='300' height='480' viewBox='0 0 300 480'><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0%25' stop-color='%23e0bfdf'/><stop offset='100%25' stop-color='%23bfafe0'/></linearGradient><rect width='100%' height='100%' fill='url(%23g)'/><path d='M150,160 L155,185 L180,190 L155,195 L150,220 L145,195 L120,190 L145,185 Z' fill='white'/><path d='M70,80 L72,90 L82,92 L72,94 L70,104 L68,94 L58,92 L68,90 Z' fill='white' opacity='0.8'/><path d='M220,320 L221,327 L228,328 L221,329 L220,336 L219,329 L212,328 L219,327 Z' fill='white' opacity='0.9'/><circle cx='100' cy='380' r='4' fill='white' opacity='0.7'/><circle cx='240' cy='100' r='3' fill='white' opacity='0.6'/><path d='M40,250 C80,230 120,270 160,250 C200,230 240,270 280,250' stroke='white' stroke-width='2' fill='none' stroke-dasharray='4,4' opacity='0.5'/></svg>" alt="Aesthetic pin">
+            <div class="like-container">
+                <span class="caption">starry pastel sky 🌙</span>
+                <button class="like-btn" onclick="toggleLike(this)">♥</button>
+            </div>
+        </div>
 
-        // Fire request
-        img.src = url + "?t=" + new Date().getTime();
-        
-        // Timeout safeguard
-        setTimeout(() => {
-            if (el.innerText === "testing...") {
-                el.innerText = "BLOCKED (TIMEOUT)";
-                el.className = "status fail";
-            }
-        }, 4500);
-    }
+        <!-- PIN 3: Cute Fluffy Cloud Landscape Medium Pin -->
+        <div class="pin">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='300' height='380' viewBox='0 0 300 380'><rect width='100%' height='100%' fill='%23f3e1f3'/><circle cx='100' cy='180' r='50' fill='white'/><circle cx='150' cy='190' r='60' fill='white'/><circle cx='200' cy='180' r='45' fill='white'/><rect x='50' y='190' width='200' height='50' fill='white'/><path d='M90,180 C90,175 95,175 95,180' stroke='%236d6d6d' stroke-width='3' fill='none'/><path d='M110,180 C110,175 115,175 115,180' stroke='%236d6d6d' stroke-width='3' fill='none'/><path d='M100,188 C102,192 104,192 106,188' stroke='%23ffb6c1' stroke-width='4' fill='none'/></svg>" alt="Aesthetic pin">
+            <div class="like-container">
+                <span class="caption">cloud baby pillow ☁️</span>
+                <button class="like-btn" onclick="toggleLike(this)">♥</button>
+            </div>
+        </div>
 
-    // Launch all network diagnostics concurrently on page load
-    window.onload = function() {
-        Object.keys(targets).forEach(key => {
-            runDiagnostic(key, targets[key]);
-        });
-    };
-</script>
+        <!-- PIN 4: Sweet Strawberry Milk Box Tall Pin -->
+        <div class="pin">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='300' height='440' viewBox='0 0 300 440'><rect width='100%' height='100%' fill='%23fff5f7'/><rect x='80' y='140' width='140' height='220' rx='10' fill='%23ffdee4'/><rect x='80' y='140' width='140' height='50' fill='%23ffb6c1'/><text x='150' y='175' font-family='sans-serif' font-size='18' font-weight='bold' fill='white' text-anchor='middle'>MILK</text><path d='M150,240 C140,220 110,220 110,245 C110,270 150,300 150,300 C150,300 190,270 190,245 C190,220 160,220 150,240 Z' fill='%23e50914' opacity='0.6'/><circle cx='130' cy='250' r='2' fill='white'/><circle cx='170' cy='260' r='2' fill='white'/></svg>" alt="Aesthetic pin">
+            <div class="like-container">
+                <span class="caption">strawberry milk carton 🍓</span>
+                <button class="like-btn" onclick="toggleLike(this)">♥</button>
+            </div>
+        </div>
 
+        <!-- PIN 5: Minimal Aesthetic Matcha Cup Medium Pin -->
+        <div class="pin">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='300' height='360' viewBox='0 0 300 360'><rect width='100%' height='100%' fill='%23f0f7f0'/><ellipse cx='150' cy='180' rx='60' ry='40' fill='%23c2e0c2'/><ellipse cx='150' cy='175' rx='54' ry='34' fill='%23a3d1a3'/><path d='M150,175 C140,165 145,155 160,165 C175,175 160,185 150,175 Z' fill='white' opacity='0.7'/></svg>" alt="Aesthetic pin">
+            <div class="like-container">
+                <span class="caption">cozy morning matcha 🍵</span>
+                <button class="like-btn" onclick="toggleLike(this)">♥</button>
+            </div>
+        </div>
+
+        <!-- PIN 6: Angel Soft Wings Short Pin -->
+        <div class="pin">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='300' height='320' viewBox='0 0 300 320'><rect width='100%' height='100%' fill='%23fbf5ff'/><path d='M80,160 C50,120 40,180 100,200 C70,200 70,230 110,220 C90,230 100,250 130,230 L140,160 Z' fill='%23e8d5f5'/><path d='M220,160 C250,120 260,180 200,200 C230,200 230,230 190,220 C210,230 200,250 170,230 L160,160 Z' fill='%23e8d5f5'/></svg>" alt="Aesthetic pin">
+            <div class="like-container">
+                <span class="caption">angel fairy core ✨</span>
+                <button class="like-btn" onclick="toggleLike(this)">♥</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        made by sugxrbunnyx ♡
+    </div>
+
+    <script>
+        function toggleLike(btn) {
+            btn.classList.toggle('liked');
+        }
+    </script>
 </body>
 </html>
