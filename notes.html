@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pretty board</title>
+    <title>pictures</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
         * {
@@ -43,6 +43,7 @@
             font-size: 16px;
             outline: none;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            background: white;
         }
         .search-btn {
             background: #ffffff;
@@ -75,7 +76,7 @@
             transform: translateY(-2px);
         }
 
-        /* Pinterest Structural Grid System */
+        /* Pinterest Masonry Structural Grid System */
         .pinterest-grid {
             columns: 4;
             column-gap: 20px;
@@ -92,6 +93,11 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.06);
             position: relative;
             display: block;
+            border: 1px solid #ebd9eb;
+            transition: transform 0.2s ease;
+        }
+        .pin:hover {
+            transform: scale(1.02);
         }
         .pin img {
             width: 100%;
@@ -99,55 +105,40 @@
             display: block;
         }
 
-        /* Overlay & Functional Like System Components */
-        .pin-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(237, 216, 237, 0.2);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-        .pin:hover .pin-overlay {
-            opacity: 1;
-        }
         .like-container {
             padding: 15px;
             background: #ffffff;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-top: 1px solid #fcf6fc;
         }
         .caption {
-            font-size: 14px;
+            font-size: 15px;
             color: #6d6d6d;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 70%;
+            max-width: 75%;
         }
         .like-btn {
             background: none;
             border: none;
-            font-size: 20px;
+            font-size: 22px;
             cursor: pointer;
             transition: transform 0.2s ease;
-            color: #ccc;
+            color: #e2cee2;
         }
         .like-btn.liked {
             color: #e50914;
-            transform: scale(1.2);
+            transform: scale(1.25);
         }
 
-        /* Loading Indicator States */
-        .loading-text {
+        .status-text {
             text-align: center;
-            font-size: 20px;
-            display: none;
+            font-size: 18px;
             margin: 40px;
+            width: 100%;
         }
 
         @media (max-width: 900px) { .pinterest-grid { columns: 3; } }
@@ -163,48 +154,48 @@
         <h1>pictures</h1>
         <a href="index.html" class="back-btn">♡ go back home</a>
         
-        <!-- Live Search Input Form Field -->
+        <!-- Live Search Field -->
         <div class="search-container">
-            <input type="text" id="search-input" class="search-bar" placeholder="search aesthetics (e.g. pink bunny, soft cat)...">
-            <button onclick="fetchImages()" class="search-btn">search</button>
+            <input type="text" id="search-input" class="search-bar" placeholder="search aesthetics (e.g. pink flower, rabbit, kitten)...">
+            <button onclick="searchWikimedia()" class="search-btn">search</button>
         </div>
     </div>
 
-    <div id="loading" class="loading-text">loading new layout pins... ✨</div>
+    <div id="status" class="status-text">loading default aesthetic board... ✨</div>
 
-    <!-- Target Output Grid Object -->
+    <!-- Active Grid Board Output -->
     <div class="pinterest-grid" id="grid-container"></div>
 
     <script>
-        // Calls safe stock API proxies that don't trigger streaming or social blocks
-        const queryPool = 'https://unsplash.com';
-        
-        // Initial setup data templates to feed the layout loop immediately
+        // Set up the default view items using unblocked educational media library sources
         const defaultPins = [
-            { id: '1585110396000-c9ffd4e4b308', title: 'soft bunny' },
-            { id: '1514888286974-6c03e2ca1dba', title: 'cozy kitty' },
-            { id: '1556228453-efd6c1ff04f6', title: 'pastel bedroom' },
-            { id: '1517841905240-472988babdf9', title: 'cute pup' },
-            { id: '1506084868230-bb9d95c24759', title: 'pancakes morning' },
-            { id: '1545241047-6083a3684587', title: 'matcha cup' },
-            { id: '1518531933037-91b2f5f229cc', title: 'pink rose aesthetics' },
-            { id: '1615485290382-441e4d049cb5', title: 'pink drink' }
+            { url: "https://wikimedia.org", title: "fluffy bunny" },
+            { url: "https://wikimedia.org", title: "aesthetic kitty" },
+            { url: "https://wikimedia.org", title: "pink tulip" },
+            { url: "https://wikimedia.org", title: "strawberries" },
+            { url: "https://wikimedia.org", title: "sweet macarons" },
+            { url: "https://wikimedia.org", title: "matcha morning" }
         ];
 
-        // Renders image cards instantly using standard web parameters
-        function buildGrid(items) {
+        function displayPins(items) {
             const container = document.getElementById('grid-container');
+            const status = document.getElementById('status');
             container.innerHTML = '';
+            
+            if (items.length === 0) {
+                status.innerText = 'no matching unblocked aesthetic pins found :( try "flower" or "cat"!';
+                status.style.display = 'block';
+                return;
+            }
+            
+            status.style.display = 'none';
             
             items.forEach(item => {
                 const pin = document.createElement('div');
                 pin.className = 'pin';
                 
-                const imgUrl = item.id.startsWith('http') ? item.id : `${queryPool}${item.id}?w=500&auto=format&fit=crop`;
-                
                 pin.innerHTML = `
-                    <img src="${imgUrl}" alt="Aesthetic pin">
-                    <div class="pin-overlay"></div>
+                    <img src="${item.url}" alt="Aesthetic pin" onerror="this.parentElement.style.display='none';">
                     <div class="like-container">
                         <span class="caption">${item.title}</span>
                         <button class="like-btn" onclick="toggleLike(this)">♥</button>
@@ -214,42 +205,51 @@
             });
         }
 
-        // Toggles local state interaction styles directly inside the frame session
         function toggleLike(btn) {
             btn.classList.toggle('liked');
         }
 
-        // Dynamically fetches live matching images using structured tracking filters
-        function fetchImages() {
+        // Live Search Engine: Connects to the educational Wikimedia Open-Data API
+        function searchWikimedia() {
             const query = document.getElementById('search-input').value.trim();
             if (!query) return;
 
-            const loader = document.getElementById('loading');
-            loader.style.display = 'block';
+            const status = document.getElementById('status');
+            status.innerText = 'fetching live unblocked pins... ✨';
+            status.style.display = 'block';
 
-            // Uses dynamic keyword tags to filter matching image elements
-            setTimeout(() => {
-                const results = [];
-                // Generates dynamic, varying image configurations to replicate Pinterest columns
-                for (let i = 0; i < 12; i++) {
-                    const randomSeed = Math.floor(Math.random() * 100000);
-                    results.push({
-                        id: `https://unsplash.com1526047932273-341f2a7631f9?w=500&auto=format&fit=crop&sig=${randomSeed}&q=${encodeURIComponent(query)}`,
-                        title: `${query} element #${i + 1}`
-                    });
-                }
-                buildGrid(results);
-                loader.style.display = 'none';
-            }, 600);
+            // Connects to the unblocked educational media library database API
+            const apiUrl = `https://wikimedia.org|png|jpg+${encodeURIComponent(query)}&gsrlimit=16&prop=pageimages&piprop=thumbnail&pithumbsize=500&format=json&origin=*`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const pins = [];
+                    if (data.query && data.query.pages) {
+                        Object.values(data.query.pages).forEach(page => {
+                            if (page.thumbnail && page.thumbnail.source) {
+                                pins.push({
+                                    url: page.thumbnail.source,
+                                    title: page.title.replace(/File:/i, '').split('.')[0].substring(0, 20)
+                                });
+                            }
+                        });
+                    }
+                    displayPins(pins);
+                })
+                .catch(error => {
+                    console.error("API error:", error);
+                    status.innerText = "Error loading images. Make sure you are connected!";
+                });
         }
 
-        // Auto launches initialization block on standard file load sequence
-        buildGrid(defaultPins);
+        // Initial setup data templates to feed the layout loop immediately
+        displayPins(defaultPins);
 
         // Allows hitting the "Enter" key on keyboard to trigger search box submissions
         document.getElementById("search-input").addEventListener("keyup", function(event) {
             if (event.key === "Enter") {
-                fetchImages();
+                searchWikimedia();
             }
         });
     </script>
